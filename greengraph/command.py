@@ -16,7 +16,7 @@ def process():
                         help="The output filename, defaults to graph.png")
     arguments = parser.parse_args()
 
-    #mygraph = Greengraph(arguments.start, arguments.end)
+    mygraph = Greengraph(arguments.start, arguments.end)
     if arguments.steps:
         data = mygraph.green_between(arguments.steps)
     else:
