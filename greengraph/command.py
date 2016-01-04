@@ -2,7 +2,6 @@ from argparse import ArgumentParser
 from matplotlib import pyplot as plt
 from graph import Greengraph
 
-
 def process():
     parser = ArgumentParser(
         description="Produce graph quantifying the amount of green land between two locations")
@@ -22,13 +21,13 @@ def process():
     else:
         data = mygraph.green_between(10)
     plt.plot(data)
-    # TODO add a title and axis labels to this graph
+    plt.xlabel("Step")
+    plt.ylabel("Greenness")
+    plt.title("Graph of green land between " + " ".join(arguments.start) + " and " + " ".join(arguments.end))
     if arguments.out:
         plt.savefig(arguments.out)
     else:
         plt.savefig("graph.png")
-    print arguments.start
-    print arguments.end
 
 if __name__ == "__main__":
     process()
