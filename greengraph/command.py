@@ -9,8 +9,8 @@ def process():
                         help="The starting location ")
     parser.add_argument("--end",  required=True, nargs="+",
                         help="The ending location")
-    parser.add_argument("--steps",
-                        help="The number of steps between the starting and ending locations, defaults to 10")
+    parser.add_argument("--steps", type=int,
+                        help="An integer number of steps between the starting and ending locations, defaults to 10")
     parser.add_argument("--out",
                         help="The output filename, defaults to graph.png")
     arguments = parser.parse_args()
