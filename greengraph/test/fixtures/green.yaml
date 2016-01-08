@@ -1,0 +1,16 @@
+- redVal: 1
+  blueVal: 1
+  greenVal: 1
+  result: False
+- redVal: 0
+  blueVal: 1
+  greenVal: 1
+  result: False
+- redVal: 1
+  blueVal: 0
+  greenVal: 1
+  result: False
+- redVal: 0
+  blueVal: 0
+  greenVal: 1
+  result: True
