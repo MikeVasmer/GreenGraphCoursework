@@ -42,3 +42,16 @@ def test_location_sequence():
                 assert_equal(test_sequence[i][0],result)
                 assert_equal(test_sequence[i][1],result)
                 i += 1
+
+@patch("greengraph.map.Map.count_green")
+@patch("greengraph.graph.Greengraph.geolocate")
+def test_green_between(mock_count_green,mock_geolocate):
+    #Test Map objects created during green_between method are called with the expected parameters
+    with patch.object(Greengraph,"location_sequence") as mock_location_sequence:
+        mock_location_sequence.return_value = [[0.,0.],[1.,1.],[2.,2.],[3.,3.]]
+        expected_calls = [call(0.0, 0.0), call(1.0, 1.0), call(2.0, 2.0), call(3.0, 3.0)]
+        with patch.object(Map,"__init__") as mock_Map_init:
+            mock_Map_init.return_value = None
+            test_Greengraph = Greengraph(start,end)
+            test_Greengraph.green_between(6)
+            mock_Map_init.assert_has_calls(expected_calls)
