@@ -1,0 +1,14 @@
+- name: emtpy
+  startlon: 0.
+  endlon: 0.
+  startlat: 0.
+  endlat: 0.
+  steps: 5
+  result: [0.,0.,0.,0.,0.]
+- name: six steps
+  startlon: 0.
+  endlon: 50.
+  startlat: 0.
+  endlat: 50.
+  steps: 6
+  result: [0.,10.,20.,30.,40.,50.]
