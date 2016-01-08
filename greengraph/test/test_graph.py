@@ -1,7 +1,6 @@
 from greengraph.map import Map
 from greengraph.graph import Greengraph
-from mock import patch
-from mock import Mock
+from mock import Mock, patch, call
 import numpy as np
 import geopy
 from nose.tools import assert_equal
@@ -22,14 +21,11 @@ def test_Greengraph_init():
         assert_equal(test_Greengraph.end,end)
 
 def test_geolocate():
-    #Test that the geolocate method returns the correct latitude and longitude coordinates for various places
-    with open(os.path.join(os.path.dirname(__file__),"fixtures","geolocate.yaml")) as fixtures_file:
-        fixtures = yaml.load(fixtures_file)
+    #Test that the geolocate method calls the geocode method of the GoogleV3 class with the expected parameters
+    with patch.object(geopy.geocoders.GoogleV3,"geocode") as mock_geocode:
         test_Greengraph = Greengraph(start,end)
-        for fixture in fixtures:
-            assert_almost_equal(
-            test_Greengraph.geolocate(fixture.pop("place")),(fixture.pop("lat"),fixture.pop("lon"))
-        )
+        test_Greengraph.geolocate(start)
+        mock_geocode.assert_called_with(start, exactly_one=False)
 
 def test_location_sequence():
     #Test that the location_sequence method computes the steps between two coordinates correctly
