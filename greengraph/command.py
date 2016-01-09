@@ -13,7 +13,7 @@ def process():
     parser.add_argument("--steps", type=int,
                         help="An integer number of steps between the starting and ending locations, defaults to 10")
     parser.add_argument("--out",
-                        help="The output filename, defaults to graph.png")
+                        help="The output filename file, which will be saved as file.png. This defaults to graph.png")
     arguments = parser.parse_args()
 
     if arguments.start and arguments.end:
@@ -33,7 +33,8 @@ def process():
     else:
         plt.title("Graph of green land between London and Durham")
     if arguments.out:
-        plt.savefig(arguments.out)
+        filename = arguments.out + ".png"
+        plt.savefig(filename)
     else:
         plt.savefig("graph.png")
 
