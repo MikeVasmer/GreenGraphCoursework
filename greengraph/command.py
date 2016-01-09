@@ -16,7 +16,7 @@ def process():
                         help="The output filename, defaults to graph.png")
     arguments = parser.parse_args()
 
-    if arguments.start & & arguments.end:
+    if arguments.start and arguments.end:
         mygraph = Greengraph(arguments.start, arguments.end)
     else:
         mygraph = Greengraph("London", "Durham")
@@ -26,8 +26,8 @@ def process():
         data = mygraph.green_between(10)
     plt.plot(data)
     plt.xlabel("Step")
-    plt.ylabel("Greenness")
-    if arguments.start & & arguments.end:
+    plt.ylabel("Number of green pixels (Max 160000)")
+    if arguments.start and arguments.end:
         plt.title("Graph of green land between " +
                   " ".join(arguments.start) + " and " + " ".join(arguments.end))
     else:
